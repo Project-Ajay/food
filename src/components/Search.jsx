@@ -2,15 +2,20 @@ import styled from "styled-components";
 import { React, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Form } from "react-router-dom";
+// allows for navigaton
+import { useNavigate } from "react-router-dom";
 
 function Search() {
   const [input, setInput] = useState("");
+  const navigate = useNavigate();
   const submitHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault(); //prevents the browser from refreshing
+    navigate('/searched/' + input);
   };
 
   return (
-    <FormStyle>
+    // submit hanlder
+    <FormStyle onSubmit={submitHandler}> 
       <div>
         <FaSearch></FaSearch>
         <input
