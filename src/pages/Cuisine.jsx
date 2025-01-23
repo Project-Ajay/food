@@ -10,7 +10,7 @@ function Cuisine() {
 
         const getCuisine = async (name) =>{
         //get the recipes of the type passes by "name: eg american, thai etc"
-        const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}`);
+        const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}&number=12`);
         const recipes = await data.json();
         setCuisine(recipes.results);
     };
@@ -24,10 +24,12 @@ function Cuisine() {
     <Grid>
       {cuisine.map((item)=>{
         return(
+          <Link to ={"/recipe/" + item.id}>
           <Card key={item.id}>
             <img src= {item.image}></img>
             <h4>{item.title}</h4>
           </Card>
+          </Link>
         )
       })}
     </Grid>)

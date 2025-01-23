@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import style, { styled } from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { Link } from "react-router-dom";
 import "@splidejs/splide/css";
 
 function Popular() {
@@ -49,11 +50,13 @@ function Popular() {
               //allows for the sliding effect
               <SplideSlide key={recipes.id}>
                 {/* display the information */}
+                <Link to ={"/recipe/" + recipes.id}>
                 <Card>
                   <p>{recipes.title}</p>
                   <img src={recipes.image}></img>
                   <Gradient />
                 </Card>
+                </Link>
               </SplideSlide>
             );
           })}

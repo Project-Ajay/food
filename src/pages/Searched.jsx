@@ -2,6 +2,7 @@ import React from 'react'
 import { useState,useEffect } from 'react';
 import style, { styled } from "styled-components";
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 function Searched() {
@@ -24,10 +25,12 @@ function Searched() {
       <Grid>
         {searchRecipes.map((item)=>{
           return(
+            <Link to ={"/recipe/" + item.id}>
             <Card key={item.id}>
               <img src= {item.image}></img>
               <h4>{item.title}</h4>
             </Card>
+            </Link>
           )
         })}
       </Grid>)
