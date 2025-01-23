@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import style, { styled } from "styled-components";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { Link } from "react-router-dom";
+import { useMediaQuery } from "react-responsive"; // Import react-responsive
 import "@splidejs/splide/css";
 
 function Popular() {
@@ -33,6 +34,10 @@ function Popular() {
     }
   };
 
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isTablet = useMediaQuery({ minWidth: 769, maxWidth: 1024 });
+  const isDesktop = useMediaQuery({ minWidth: 1025 });
+
   return (
     <div>
       {/** getting each recipies object and prrfomung a function */}
@@ -41,8 +46,8 @@ function Popular() {
         {/* determines the number of image in the slider */}
         <Splide
           options={{
-            perPage: 2,
-            gap: "2rem",
+            perPage: isMobile ? 1 : isTablet ? 2 : 3, // Adjust number of items based on screen size
+            gap: isMobile ? "1rem" : "2rem", // Adjust gap based on screen size
           }}
         >
           {popular.map((recipes) => {
@@ -50,12 +55,12 @@ function Popular() {
               //allows for the sliding effect
               <SplideSlide key={recipes.id}>
                 {/* display the information */}
-                <Link to ={"/recipe/" + recipes.id}>
-                <Card>
-                  <p>{recipes.title}</p>
-                  <img src={recipes.image}></img>
-                  <Gradient />
-                </Card>
+                <Link to={"/recipe/" + recipes.id}>
+                  <Card>
+                    <p>{recipes.title}</p>
+                    <img src={recipes.image}></img>
+                    <Gradient />
+                  </Card>
                 </Link>
               </SplideSlide>
             );
