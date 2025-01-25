@@ -25,9 +25,12 @@ function Category() {
         <h4>Japanese</h4>
       </SLink>
     </List>
+
+    
     
   );
 }
+
 
 const List = styled.div`
     display: flex;

@@ -29,15 +29,24 @@ function Recipe() {
       <Info>
         <Button
           className={activeTab === "instruction" ? "active" : ""}
-          onClick={() => setActiveTab("instruction")}
-        > Instruction</Button>
+          onClick={() => setActiveTab("instruction")}>Instruction</Button>
         <Button
-          className={activeTab === "ingredients" ? "active" : ""}
-          onClick={() => setActiveTab("ingredients")}>
-            Ingredients</Button>
+          className={activeTab === "ingredient" ? "active" : ""}
+          onClick={() => setActiveTab("ingredient")}>Ingredients</Button>
 
-        <div dangerouslySetInnerHTML={{ __html: details.instructions }}></div>
 
+        {activeTab === "instruction" && (
+        <div>
+          <h3 dangerouslySetInnerHTML={{ __html: details.instructions }}/>
+        </div>)}
+        {activeTab === "ingredient" && (
+          <ul>
+            {details.extendedIngredients.map((ingredient) =>( 
+              <li key={ingredient.id}> {ingredient.original}</li>
+            ))}
+          </ul>
+        )}
+        ;
       </Info>
     </DetailWrapper>
   );
@@ -97,6 +106,16 @@ const Info = styled.div`
   font-size: 1.2rem;
   color: #444;
   line-height: 1.8rem;
+`;
+
+const List = styled.ul `
+list-style-type: none; /* Removes default bullets */
+  padding: 0; /* Removes default padding */
+  margin: 1rem 0; /* Adds space above and below the list */
+  background-color: #f9f9f9; /* Light background for the list */
+  border: 1px solid #ddd; /* Subtle border for definition */
+  border-radius: 8px; /* Smooth rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 
 export default Recipe;
