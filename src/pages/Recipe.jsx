@@ -51,27 +51,37 @@ function Recipe() {
     </DetailWrapper>
   );
 }
-
 const DetailWrapper = styled.div`
   margin: 3rem 0 2rem 0;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
   .active {
     background: rgba(227, 41, 41, 0.8);
     color: #fff;
     border-radius: 5px;
     padding: 0.5rem 1rem;
   }
+
   h2 {
     margin-bottom: 2rem;
     font-size: 2rem;
     color: #333;
   }
+
   li {
     font-size: 1.4rem;
     line-height: 2.5rem;
     color: #555;
   }
+
   ul {
     margin-top: 2rem;
     padding-left: 1.5rem;
@@ -79,7 +89,15 @@ const DetailWrapper = styled.div`
 `;
 
 const Image = styled.img`
-  border-radius : 2rem;
+  border-radius: 2rem;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+
+  @media (min-width: 768px) {
+    max-width: 400px; /* Set a max width for larger screens */
+    margin-bottom: 0;
+  }
 `;
 
 const Button = styled.button`
@@ -91,14 +109,11 @@ const Button = styled.button`
   margin-right: 2rem;
   font-weight: 600;
   font-size: 1rem;
-  // cursor: pointer;
-  // transition: all 0.3s ease;
 
-  // &:hover {
-  //   background: rgb(190, 248, 163);
-  //   color: #fff;
-  //   border-color: rgb(190, 248, 163);
-  // }
+  @media (max-width: 768px) {
+    padding: 0.8rem 1.5rem;
+    margin-right: 1rem;
+  }
 `;
 
 const Info = styled.div`
@@ -106,15 +121,21 @@ const Info = styled.div`
   font-size: 1.2rem;
   color: #444;
   line-height: 1.8rem;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    margin-left: 4rem;
+    text-align: left;
+  }
 `;
 
-const List = styled.ul `
-list-style-type: none; /* Removes default bullets */
-  padding: 0; /* Removes default padding */
-  margin: 1rem 0; /* Adds space above and below the list */
-  background-color: #f9f9f9; /* Light background for the list */
-  border: 1px solid #ddd; /* Subtle border for definition */
-  border-radius: 8px; /* Smooth rounded corners */
+const List = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  margin: 1rem 0;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 `;
 

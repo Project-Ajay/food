@@ -38,10 +38,19 @@ function Searched() {
   }
   
   const Grid = styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15rem,2fr));
-    grid-gap: 1rem;
-  `;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); // Responsive grid layout
+  gap: 1.5rem;
+  margin: 2rem 0;
+
+  @media (max-width: 768px) {
+    gap: 1rem; // Reduce gap on smaller screens
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); // Smaller cards for mobile
+  }
+`;
   
   const Card = styled.div`
     img{
